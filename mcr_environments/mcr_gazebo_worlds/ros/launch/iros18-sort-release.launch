@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<launch>
+
+    <arg name="world_name" default="worlds/empty.world" />
+    <arg name="debug" default="false" />
+    <arg name="headless" default="false" />
+    <arg name="paused" default="false" />
+    <arg name="use_sim_time" default="true" />
+    <arg name="gui" default="true" />
+
+    <arg name="robot_env" default="iros18-sort-release" />
+
+    <!-- start gazebo with empty world -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" value="$(arg world_name)" />
+        <arg name="debug" value="$(arg debug)" />
+        <arg name="headless" value="$(arg headless)" />
+        <arg name="paused" value="$(arg paused)" />
+        <arg name="use_sim_time" value="$(arg use_sim_time)" />
+        <arg name="gui" value="$(arg gui)" />
+    </include>
+
+    <node name="spawn_gazebo_diningroom_table" pkg="gazebo_ros" type="spawn_model"
+      args="-file $(find mcr_gazebo_worlds)/common/objects/urdf/diningroom_table.urdf -urdf -model diningroom_table -x -1 -y 0 -z 0.2 -R 0 -P 0 -Y 1.57"
+        respawn="false" output="screen" />
+
+    <node name="spawn_gazebo_ketchup_bottle1" pkg="gazebo_ros" type="spawn_model"
+        args="-file $(find mcr_gazebo_worlds)/common/objects/urdf/ketchup_bottle.urdf -urdf -model ketchup_bottle1 -x -0.75 -y -0.25 -z 0.76 -R 0 -P 0 -Y 0"
+          respawn="false" output="screen" />
+
+    <node name="spawn_gazebo_ketchup_bottle2" pkg="gazebo_ros" type="spawn_model"
+      args="-file $(find mcr_gazebo_worlds)/common/objects/urdf/ketchup_bottle.urdf -urdf -model ketchup_bottle2 -x -1 -y -0.1 -z 0.76 -R 0 -P 0 -Y 0"
+        respawn="false" output="screen" />
+
+    <node name="spawn_gazebo_book1" pkg="gazebo_ros" type="spawn_model"
+      args="-file $(find mcr_gazebo_worlds)/common/objects/urdf/book.urdf -urdf -model book1 -x -1 -y 0.5 -z 0.76 -R 0 -P 0 -Y 1.57"
+        respawn="false" output="screen" />
+
+</launch>
